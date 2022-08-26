@@ -3,7 +3,7 @@ const Post = require('../models/Post');
 const PostController = {
     // get posts
     getPosts(req, res) {
-        Post.find().populate("comments").then(posts => {
+        Post.find().populate({path: 'comments', model: 'Comment'}).then(posts => {
             res.json(posts);
         }
         ).catch(err => {

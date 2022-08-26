@@ -5,8 +5,8 @@ const User = require('../models/User');
 const UserController = {
     // get users 
     getUsers(req,res) {
-        User.find().populate('comments').then((person) => {
-            res.json(person);
+        User.find().populate({path: 'comments', model: 'Comment'}).populate({path: 'posts', model: 'Post'}).then((user) => {
+            res.json(user);
         }).catch(err => {
             res.json(err);
         })

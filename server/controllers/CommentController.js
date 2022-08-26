@@ -3,6 +3,12 @@ const Post = require('../models/Post');
 const User = require('../models/User');
 
 const CommentController = {
+    // get all comments 
+    getAllComments(req,res){
+        Comment.find().then(comment => {
+            res.json(comment);
+        })
+    },
     // get comments by post id
     getCommentsByPostId(req, res) {
         Comment.findById(req.params.id).populate('user').then((comment) => {
